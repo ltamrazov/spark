@@ -1,0 +1,30 @@
+version: '3.7'
+
+volumes:
+  sparkdb:
+
+services:
+    api:
+        container_name: spark-api
+        image: spark:latest
+        command: "./scripts/waitfor db:5432 -- ${COMMAND:-npm run dev}"
+        build:
+          context: .
+        depends_on:
+          - db
+        env_file: .env
+        volumes:
+          - ./:/app
+        ports:
+          - 3000:3000
+    db:
+        image: postgres
+        container_name: spark-db
+        build:
+            context: .
+            dockerfile: Dockerfile.postgres
+        ports: 
+          - '5432:5432'
+        volumes:
+          - sparkdb:/var/lib/postgresql/data
+        env_file: .env

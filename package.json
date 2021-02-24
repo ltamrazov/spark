@@ -1,0 +1,55 @@
+{
+  "name": "spark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc",
+    "clean": "rm -rf dist/*",
+    "build": "npm run clean && npm run compile",
+    "dev": "ts-node-dev --poll --transpile-only -r tsconfig-paths/register ./src/spark.ts",
+    "debug": "ts-node-dev --poll --inspect-brk=0.0.0.0:5858 --transpile-only -r tsconfig-paths/register ./src/spark.ts",
+    "test": "jest",
+    "migrate:create": "node-pg-migrate -m src/migrations -j ts create"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ltamrazov/spark.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ltamrazov/spark/issues"
+  },
+  "homepage": "https://github.com/ltamrazov/spark#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-winston": "^4.1.0",
+    "node-pg-migrate": "^5.9.0",
+    "pg": "^8.5.1",
+    "postgraphile": "^4.11.0",
+    "winston": "^3.3.3"
+  },
+  "_moduleAliases": {
+    "~lib": "dist/lib",
+    "~config": "dist/config"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.31",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.5",
+    "eslint-plugin-modules-newline": "0.0.6",
+    "jest": "^26.6.3",
+    "ts-node-dev": "^1.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths-jest": "0.0.1",
+    "typescript": "^4.2.2"
+  }
+}
